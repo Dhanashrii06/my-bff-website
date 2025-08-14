@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -20,9 +18,7 @@
         min-height: 100vh;
         position: relative;
     }
-    .active {
-        display: block;
-    }
+    .active { display: block; }
     .sparkle-text {
         font-size: 2.5rem;
         color: #ff4da6;
@@ -34,15 +30,14 @@
         100% { text-shadow: 0 0 20px #ff3399; }
     }
     .main-image {
-    display: block;
-    margin: 0 auto; /* Center image */
-    max-width: 20%; /* smaller size */
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(255,0,150,0.4);
-    animation: fadeEffect 1.5s ease-in-out;
-}
-
+        display: block;
+        margin: 0 auto;
+        max-width: 20%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255,0,150,0.4);
+        animation: fadeEffect 1.5s ease-in-out;
+    }
     @keyframes fadeEffect {
         from { opacity: 0.4; }
         to { opacity: 1; }
@@ -67,15 +62,8 @@
         cursor: pointer;
         box-shadow: 0 0 10px rgba(255,0,150,0.5);
     }
-    button:hover {
-        background-color: #ff3399;
-    }
-
-    /* --- SECOND PAGE CUTE STYLE --- */
-    #page2 {
-        background: linear-gradient(to bottom right, #fff6f9, #ffeaf1);
-        overflow: hidden;
-    }
+    button:hover { background-color: #ff3399; }
+    #page2 { background: linear-gradient(to bottom right, #fff6f9, #ffeaf1); overflow: hidden; }
     video {
         max-width: 90%;
         border-radius: 20px;
@@ -87,14 +75,12 @@
         to { opacity: 1; transform: scale(1); }
     }
     .jealousy-text {
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        font-size: 1.0rem;
+        font-family: 'Lucida Sans', sans-serif;
+        font-size: 1rem;
         color: #d63384;
         margin-top: 15px;
         animation: fadeIn 2s ease-in-out;
     }
-
-    /* Floating Hearts */
     .heart {
         position: absolute;
         color: #ff4da6;
@@ -111,16 +97,15 @@
 </head>
 <body>
 
-<!-- PAGE 1: Birthday -->
+<!-- PAGE 1 -->
 <div class="page active" id="page1">
     <h1 class="sparkle-text">🎉 Happy Birthday My Cutie 🎉</h1>
-   <img src="images/fullwhite.jpg" alt="Full White">
-<img src="images/saree.jpg" alt="Saree">
-<img src="images/trip.jpg" alt="Trip">
-<img src="images/withme.jpg" alt="With Me">
-<img src="images/yellowsaree.jpg" alt="Yellow Saree">
-<img src="images/clg.jpg" alt="College">
-
+    <img src="fullwhite.jpg" alt="Full White" class="main-image">
+    <img src="saree.jpg" alt="Saree" class="main-image">
+    <img src="trip.jpg" alt="Trip" class="main-image">
+    <img src="withme.jpg" alt="With Me" class="main-image">
+    <img src="yellowsaree.jpg" alt="Yellow Saree" class="main-image">
+    <img src="clg.jpg" alt="College" class="main-image">
     <p class="message">
         You’re the sweetest soul in my life 💖 Wishing you endless smiles, love, and happiness! 
         certified yapper ki certified listener ho app cutie 🌸
@@ -129,7 +114,7 @@
     <button onclick="showPage(2)">Next Surprise ➡</button>
 </div>
 
-<!-- PAGE 2: Video -->
+<!-- PAGE 2 -->
 <div class="page" id="page2">
     <h1 class="sparkle-text">🎥 Our Special Memory 🎥</h1>
     <video controls>
@@ -137,63 +122,36 @@
         Your browser does not support the video tag.
     </video>
     <p class="jealousy-text">
-        this is me shooting video of her bcos she got jealous when i went to meet someone else 💖... she thought i will not give her time as i used to give but i believe in "jisse me pyar karti hu uske liye mere pass hamesha time rahta hai even i am busy " 💕
-        Noone can replace you.... mere bina aapko kon pareshan karega miss BUTKI 🌸 (kya matlab me nahi hoti toh sab aaram se rahte hai 🥺) fir bhi me kaha jaane wali hu 😁
+        this is me shooting video of her bcos she got jealous when i went to meet someone else 💖...
+        Noone can replace you.... mere bina aapko kon pareshan karega miss BUTKI 🌸
     </p>
     <br>
     <button onclick="showPage(1)">⬅ Back</button>
 </div>
 
 <script>
-/* Page Switcher */
 function showPage(pageNumber) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById("page" + pageNumber).classList.add('active');
-
-    // Start hearts animation when on page 2
-    if (pageNumber === 2) {
-        startHearts();
-    }
+    if (pageNumber === 2) startHearts();
 }
 
-/* Image Changer - 6 Images */
-const images = [
-    "clg.jpg",
-    "fullwhite.jpg",
-    "saree.jpg",
-    "trip.jpg",
-    "withme.jpg",
-    "yellowsaree.jpg"
-];
-let imgIndex = 0;
-const imgElement = document.getElementById("changingImage");
-function changeImage() {
-    imgIndex = (imgIndex + 1) % images.length;
-    imgElement.src = images[imgIndex];
-    imgElement.style.animation = "none";
-    imgElement.offsetHeight;
-    imgElement.style.animation = "fadeEffect 1.5s ease-in-out";
-}
-setInterval(changeImage, 2500);
-
-/* Floating Hearts Generator */
+/* Floating Hearts */
 function startHearts() {
     const page2 = document.getElementById("page2");
-    for (let i = 0; i < 10; i++) {
+    for (let i=0;i<10;i++){
         let heart = document.createElement("div");
         heart.classList.add("heart");
         heart.innerHTML = "❤";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        heart.style.left = Math.random()*100+"vw";
+        heart.style.animationDuration = (Math.random()*3+3)+"s";
         page2.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
+        setTimeout(()=>heart.remove(),6000);
     }
-    setTimeout(startHearts, 2000);
+    setTimeout(startHearts,2000);
 }
 </script>
 
 </body>
 </html>
-
-
 
